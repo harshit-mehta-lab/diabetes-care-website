@@ -1,0 +1,15 @@
+{
+  "projectName": "Diabetes Care Website",
+  "version": "1.0.0",
+  "developer": "Harshit Mehta",
+  "branch": "production",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Node.js",
+    "Docker"
+  ],
+  "ci_cd": "GitHub Actions",
+  "repository": "https://github.com/harshit-mehta-lab/diabetes-care-website"
+}
