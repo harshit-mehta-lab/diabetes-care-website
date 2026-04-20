@@ -1,5 +1,5 @@
 {
-    "name": "diabetes-care-website",
+    "name": "diabetes-care-backend",
     "version": "1.0.0",
     "description": "A modern website for diabetic patients with chatbot and tracking features",
     "main": "server.js",
@@ -8,10 +8,15 @@
         "dev": "nodemon server.js"
     },
     "dependencies": {
+        "@google/generative-ai": "^0.24.1",
         "body-parser": "^1.20.2",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
+        "express-rate-limit": "^8.3.2",
+        "express-status-monitor": "^1.3.4",
+        "helmet": "^8.1.0",
+        "nodemailer": "^8.0.5",
         "openai": "^4.91.1"
     },
     "devDependencies": {
