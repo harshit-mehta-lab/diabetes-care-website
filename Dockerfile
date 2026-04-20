@@ -1,23 +1,29 @@
-# Use Node.js 20 slim image as base
-FROM node:20-slim
+# Use a lightweight Node.js 20 image
+FROM node:20-alpine
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package files first
 COPY package*.json ./
+
+# Install production dependencies
 RUN npm install --production
 
-# Copy application source code
+# Move source files and assets
 COPY Server ./Server
 COPY public ./public
 
-# Expose the application port (defaulting to 1012 as per Server/server1.js)
+# SECURITY: Set permissions and switch to non-root 'node' user
+RUN chown -R node:node /app
+USER node
+
+# Expose the application port
 EXPOSE 1012
 
-# Set environment variables
+# Environment configuration
 ENV NODE_ENV=production
 ENV PORT=1012
 
-# Run the server
+# Start the application
 CMD ["node", "Server/server1.js"]
