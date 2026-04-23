@@ -78,4 +78,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetLink = document.querySelector(`.sidebar nav ul li a[href="${initialHash}"]`);
         if (targetLink) targetLink.click();
     }
+
+    // Logo refresh animation
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            this.classList.add('refresh-anim');
+            setTimeout(() => {
+                window.location.reload();
+            }, 800); // Wait for the animation to finish
+        });
+    }
+
+    // Color Theme Picker Logic
+    const colorBtns = document.querySelectorAll('.color-btn');
+    const savedColor = localStorage.getItem('themeColor');
+
+    if (savedColor) {
+        document.documentElement.style.setProperty('--primary-color', savedColor);
+        colorBtns.forEach(btn => {
+            if (btn.dataset.color === savedColor) btn.classList.add('active');
+        });
+    }
+
+    colorBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const color = this.dataset.color;
+            document.documentElement.style.setProperty('--primary-color', color);
+            localStorage.setItem('themeColor', color);
+            
+            colorBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 });
